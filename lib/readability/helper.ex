@@ -61,6 +61,8 @@ defmodule Readability.Helper do
   def remove_tag(content, _) when is_binary(content), do: content
   def remove_tag([], _), do: []
 
+  def remove_tag([{tag, _} | rest], fun) when is_atom(tag), do: remove_tag(rest, fun)
+
   def remove_tag([h | t], fun) do
     node = remove_tag(h, fun)
 
